@@ -9,17 +9,8 @@ fun main(args: Array<String>) {
     val re = """#(\d+) @ (\d+),(\d+): (\d+)x(\d+)""".toRegex()
 
     File("Input/03.txt").forEachLine {
-        val match = re.matchEntire(it)!!
-
-        fabrics.add(
-            Fabric(
-                id = match.groups[1]!!.value.toInt(),
-                left = match.groups[2]!!.value.toInt(),
-                top = match.groups[3]!!.value.toInt(),
-                width = match.groups[4]!!.value.toInt(),
-                height = match.groups[5]!!.value.toInt()
-            )
-        )
+        val (id, left, top, width, height) = re.matchEntire(it)!!.groupValues.drop(1).map { it.toInt() }
+        fabrics.add(Fabric(id, left, top, width, height))
     }
 
     // Create overlap matrix
