@@ -48,7 +48,7 @@ fun main(args: Array<String>) {
             .filter { it.guard == guard2 }
             .bestMinute()
 
-    println("Part 2: Guard $guard2 * minute $minute1 = ${guard2 * minute2}")
+    println("Part 2: Guard $guard2 * minute $minute2 = ${guard2 * minute2}")
 
 }
 
