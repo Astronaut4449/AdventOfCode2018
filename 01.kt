@@ -11,12 +11,11 @@ fun main(args: Array<String>) {
 
     // Part 2
     var result = 0
-    val results = mutableListOf<Int>()
-    outer@ while (true) {
+    val results = mutableSetOf<Int>(0)
+    cycleNumbers@ while (true) {
         for (number in numbers) {
             result += number
-            if (result in results) break@outer
-            results.add(result)
+            if (!results.add(result)) break@cycleNumbers
         }
     }
     println("Part 2: $result")
