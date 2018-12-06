@@ -12,12 +12,12 @@ fun main(args: Array<String>) {
         var startSleep = 0
 
         for (line in this) {
-            val match = re.matchEntire(line)!!
+            val (time, type, id) = re.matchEntire(line)!!.groupValues.drop(1)
 
-            when (match.groups[2]!!.value) {
-                "Guard" -> currGuard = match.groups[3]!!.value.toInt()
-                "falls" -> startSleep = match.groups[1]!!.value.toInt()
-                "wakes" -> sleepyTimes.add(SleepInterval(currGuard, startSleep, match.groups[1]!!.value.toInt()))
+            when (type) {
+                "Guard" -> currGuard = id.toInt()
+                "falls" -> startSleep = time.toInt()
+                "wakes" -> sleepyTimes.add(SleepInterval(currGuard, startSleep, time.toInt()))
             }
         }
 
