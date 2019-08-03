@@ -1,7 +1,9 @@
+package day05
+
 import java.io.File
 import java.lang.Integer.max
 
-fun main(args: Array<String>) {
+fun main() {
     val polymer = File("Input/05.txt").readText()
 
     // Part 1
