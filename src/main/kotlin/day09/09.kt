@@ -5,8 +5,8 @@ import java.math.BigInteger
 
 fun main() {
     val (playerCount, marbleCount) = File("Input/09.txt").readText().let { line ->
-        val regex = """(\d+).*?(\d+).*""".toRegex()
-        regex.matchEntire(line)!!.destructured.toList().map { it.toInt() }
+        val regex = """(\d+).*?(\d+)""".toRegex()
+        regex.find(line)!!.destructured.toList().map { it.toInt() }
     }
 
     println("Part 1: ${highestScoreOfMarbleGame(playerCount, marbleCount)}")
