@@ -1,16 +1,17 @@
+package day03
+
 import java.io.File
 
 data class Fabric(val id: Int, val left: Int, val top: Int, val width: Int, val height: Int)
 
 fun main(args: Array<String>) {
-    val fabrics = mutableListOf<Fabric>()
 
     // Parse file and create fabric objects
     val re = """#(\d+) @ (\d+),(\d+): (\d+)x(\d+)""".toRegex()
 
-    File("Input/03.txt").forEachLine {
-        val (id, left, top, width, height) = re.matchEntire(it)!!.groupValues.drop(1).map { it.toInt() }
-        fabrics.add(Fabric(id, left, top, width, height))
+    val fabrics = File("Input/03.txt").readLines().map { line ->
+        val (id, left, top, width, height) = re.matchEntire(line)!!.destructured.toList().map { it.toInt() }
+        Fabric(id, left, top, width, height)
     }
 
     // Create overlap matrix
@@ -49,6 +50,6 @@ fun main(args: Array<String>) {
         .first().id
 
     println("Part 2: $idNotOverlapping")
-    
+
 }
 
